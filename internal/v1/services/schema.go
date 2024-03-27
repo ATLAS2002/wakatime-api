@@ -2,25 +2,25 @@ package services
 
 type StatsSchema struct {
 	Data struct {
-		Categories []Category `json:"categories"`
-    Languages []Language `json:"languages"`
+		Categories []BasicInfo `json:"categories"`
+    Languages []WithPercentage `json:"languages"`
+    Editors []WithPercentage `json:"editors"`
+    OperatingSystems []WithPercentage `json:"operating_systems"`
 	} `json:"data"`
 }
 
-type Category struct {
+type BasicInfo struct {
 	Name  string `json:"name"`
 	Hours int 	 `json:"hours"`
 	Minutes int  `json:"minutes"`
 }
 
-type Language struct {
-  Name  string `json:"name"`
-  Hours int   `json:"hours"`
-  Minutes int `json:"minutes"`
+type WithPercentage struct {
+  BasicInfo
   Percent float64 `json:"percent"`
 }
 
-type LanguageWithRank struct {
-  Language
+type WithPercentageAndRank struct {
+  WithPercentage
   Rank int `json:"rank"`  
 }
