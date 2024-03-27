@@ -19,3 +19,8 @@ type Language struct {
   Minutes int `json:"minutes"`
   Percent float64 `json:"percent"`
 }
+
+type LanguageWithRank struct {
+  Language
+  Rank int `json:"rank"`  
+}

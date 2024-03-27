@@ -12,10 +12,13 @@ func (stats StatsSchema) GetTopLanguages(limit int) []Language {
 }
 
 // GetLanguage returns data of how much time a user spent on a specific language.
-func (stats StatsSchema) GetLanguage(lang string) (*Language, error) {
-  for _, language := range stats.Data.Languages {
+func (stats StatsSchema) GetLanguage(lang string) (*LanguageWithRank, error) {
+  for idx, language := range stats.Data.Languages {
     if language.Name == lang {
-      return &language, nil
+      return &LanguageWithRank{
+        Language: language,
+        Rank: idx + 1,
+      }, nil
     }
   }
   return nil, fmt.Errorf("language %s not found", lang)
