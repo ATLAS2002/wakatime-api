@@ -11,8 +11,8 @@ import (
 func GetV1Router() *http.ServeMux {
 	router := NewRouter()
 
-  router.Use(middlewares.FetchStats)
-  
+	router.Use(middlewares.FetchStats)
+
 	loadRoutes(router)
 
 	v1 := http.NewServeMux()
@@ -22,11 +22,11 @@ func GetV1Router() *http.ServeMux {
 }
 
 func loadRoutes(router *Router) {
-  router.HandleFunc("GET /{username}/coding-time", handlers.HandleCodingTime)
-  
-  router.HandleFunc("GET /{username}/language/{lang}", handlers.HandleLanguage)
-  router.HandleFunc("GET /{username}/language", handlers.HandleTopLanguages)
+	router.HandleFunc("GET /{username}/coding-time", handlers.HandleCodingTime)
 
-  router.HandleFunc("GET /{username}/os/{os}", handlers.HandleOS)
-  router.HandleFunc("GET /{username}/os", handlers.HandleTopOS)
+	router.HandleFunc("GET /{username}/language/{lang}", handlers.HandleLanguage)
+	router.HandleFunc("GET /{username}/language", handlers.HandleTopLanguages)
+
+	router.HandleFunc("GET /{username}/os/{os}", handlers.HandleOS)
+	router.HandleFunc("GET /{username}/os", handlers.HandleTopOS)
 }
